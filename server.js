@@ -8,6 +8,7 @@ const DB = process.env.DATABASE.replace(
     '<PASSWORD>',
     process.env.DATABASE_PASSWORD
 )
+const shotRouter = require('./routes/ShotRoutes.js')
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
@@ -18,36 +19,13 @@ mongoose.connect(DB, {
     console.log("Database connection successful...")
 })
 
-const shotSchema = new mongoose.Schema({
-    shotType: String,
-    club: String,
-    targetHit: Boolean,
-})
-
-const Shot = mongoose.model('Shot', shotSchema);
-
-const testShot = new Shot({
-    shotType: 'chunked',
-    club: '8 iron',
-    targetHit: false,
-})
-
-testShot.save().then(doc => {
-    console.log(doc)
-}).catch(err => {
-    console.log(err)
-})
 
 const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.json({
-        message: 'hello'
-    })
-})
+app.use('/shot', shotRouter)
 
 app.listen(PORT, (err) => {
     err || console.log(`Server running on ${PORT}...`)
