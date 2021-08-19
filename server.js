@@ -9,6 +9,7 @@ const DB = process.env.DATABASE.replace(
     process.env.DATABASE_PASSWORD
 )
 const shotRouter = require('./routes/ShotRoutes.js')
+const playerRouter = require('./routes/PlayerRoutes.js')
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
@@ -25,7 +26,8 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/shot', shotRouter)
+app.use('/shots', shotRouter)
+app.use('/players', playerRouter)
 
 app.listen(PORT, (err) => {
     err || console.log(`Server running on ${PORT}...`)
