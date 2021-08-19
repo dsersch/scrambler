@@ -10,6 +10,8 @@ const DB = process.env.DATABASE.replace(
 )
 const shotRouter = require('./routes/ShotRoutes.js')
 const playerRouter = require('./routes/PlayerRoutes.js')
+const holeRouter = require('./routes/HoleRoutes.js')
+const roundRouter = require('./routes/RoundRoutes.js')
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
@@ -28,6 +30,8 @@ app.use(express.json());
 
 app.use('/shots', shotRouter)
 app.use('/players', playerRouter)
+app.use('/holes', holeRouter)
+app.use('/rounds', roundRouter)
 
 app.listen(PORT, (err) => {
     err || console.log(`Server running on ${PORT}...`)
