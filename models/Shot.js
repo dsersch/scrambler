@@ -14,6 +14,11 @@ const shotSchema = new mongoose.Schema({
       ref: 'Player',
       required: true,
   },
+  hole: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Hole",
+      required: true,
+  }
 });
 
 const Shot = mongoose.model("Shot", shotSchema);

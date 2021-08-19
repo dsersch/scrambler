@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 exports.getAllShots = async (req, res) => {
     try {
-        const allShots = await Shot.find()
+        const allShots = await Shot.find().populate('player')
         res.status(200).json({
             status: 'success',
             data: { allShots }
