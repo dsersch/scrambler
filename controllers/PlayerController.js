@@ -1,6 +1,20 @@
 const Player = require('../models/Player.js');
 const mongoose = require('mongoose');
 
+exports.getAllPlayers = async (req, res) => {
+    try {
+        const allPlayers = await Player.find()
+        res.status(200).json({
+            status: 'success',
+            data: { allPlayers }
+        })
+    } catch (err) {
+        res.status(404).json({
+            status: 'success',
+            message: err,
+        })
+    }
+}
 
 exports.addPlayer = async (req, res) => {
     try {

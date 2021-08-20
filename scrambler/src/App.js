@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classes from './App.module.css';
+import RoundForm from './components/RoundForm'
 
 
 
@@ -7,14 +8,19 @@ function App() {
   const [shotList, setShotList] = useState([])
 
   const fetchShots = async() => {
-    const res = await fetch('/shots')
-    const data = await res.json()
-    
-    setShotList(data.data.allShots)
+    try {
+      const res = await fetch('/shots')
+      const data = await res.json()
+      
+      setShotList(data.data.allShots)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
     <div className={classes.app}>
+      <RoundForm />
       <button onClick={fetchShots}>Get Shots</button>
       <ul>
         {shotList.map((el) => {
