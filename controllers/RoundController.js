@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 exports.getAllRounds = async (req, res) => {
     try {
-        const allRounds = await Round.find().populate('players')
+        const allRounds = await Round.find();
         res.status(200).json({
             status: 'success',
             data: { allRounds }
@@ -18,7 +18,7 @@ exports.getAllRounds = async (req, res) => {
 
 exports.addRound = async (req, res) => {
     try {
-        const newRound = await (await Round.create(req.body));
+        const newRound = await Round.create(req.body);
 
         res.status(201).json({
             status: 'success',

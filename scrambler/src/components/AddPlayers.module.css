@@ -1,0 +1,38 @@
+.player-list {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgreen;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.player-list ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 1.5rem;
+}
+
+.player-list li {
+    box-sizing: border-box;
+    background-color: white;
+    padding: .5rem;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: .5rem;
+    text-align: center;
+}
+
+.player-list button {
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: darkolivegreen;
+    color: white;
+    border-radius: 10px;
+    transition: all .3s;
+}
+
+.player-list button:hover {
+    background-color: rgb(70, 88, 37);
+}

@@ -19,13 +19,14 @@ const RoundForm = (props) => {
                 method: 'POST',
                 body: JSON.stringify({
                     playerName: formTeamCaptain,
+                    teamName: formTeamName,
                 }),
                 headers: {
                     'Content-type': 'application/json'
                 }
             })
             const playerObj = await res.json()
-            return playerObj.data._id
+            return playerObj.data
 
         } catch (err) {
             console.log(err)
@@ -34,12 +35,12 @@ const RoundForm = (props) => {
 
     const postRound = async () => {
             try {
-                const playerId = await postPlayer();
+                const player = await postPlayer();
                 const res = await fetch('/rounds', {
                     method: 'POST',
                     body: JSON.stringify({
                         teamName: formTeamName,
-                        players: [playerId]
+                        players: [player]
                     }),
                     headers: {
                         'Content-type': 'application/json'
@@ -47,7 +48,7 @@ const RoundForm = (props) => {
                 })
     
                 const data = await res.json()
-                console.log(data.data)
+                props.roundStart(data.data)
             } catch (err) {
                 console.log(err)
             }

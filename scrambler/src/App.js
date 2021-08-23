@@ -1,32 +1,24 @@
 import React, { useState } from 'react';
 import classes from './App.module.css';
+import AddPlayers from './components/AddPlayers';
 import RoundForm from './components/RoundForm'
 
 
-
 function App() {
-  const [shotList, setShotList] = useState([])
+  const [roundData, setRoundData] = useState(null)
 
-  const fetchShots = async() => {
-    try {
-      const res = await fetch('/shots')
-      const data = await res.json()
-      
-      setShotList(data.data.allShots)
-    } catch (err) {
-      console.log(err)
-    }
+  const onRoundStartedHandler = (data) => {
+    setRoundData(data)
+  }
+
+  const onUpdateRoundData = (newRoundData) => {
+    setRoundData(newRoundData)
   }
 
   return (
     <div className={classes.app}>
-      <RoundForm />
-      <button onClick={fetchShots}>Get Shots</button>
-      <ul>
-        {shotList.map((el) => {
-          return <li key={el._id}>Type: {el.shotType}</li>
-        })}
-      </ul>
+      {!roundData && <RoundForm roundStart={onRoundStartedHandler}/>}
+      {roundData && <AddPlayers data={roundData} onUpdate={onUpdateRoundData} />}
     </div>
   );
 }

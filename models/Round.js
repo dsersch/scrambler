@@ -4,12 +4,9 @@ const roundSchema = new mongoose.Schema({
     teamName: {
         type: String,
         required: true,
+        unique: true,
     },
-    players: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Player',
-        required: true,
-    }],
+    players: [Object],
     holes: [{
         type: mongoose.Schema.ObjectId,
         ref: "Hole"
