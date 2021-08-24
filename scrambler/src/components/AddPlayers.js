@@ -17,7 +17,7 @@ const AddPlayers = (props) => {
                 })}
             </ul>
             {players.length < 4 && <AddPlayerInput roundInfo={props.data} rosterUpdate={onUpdate}/>}
-            <button>Start round</button> 
+            <button onClick={props.onStart}>Start round</button> 
         </div>
     )
 }

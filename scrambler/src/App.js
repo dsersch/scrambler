@@ -6,6 +6,7 @@ import RoundForm from './components/RoundForm'
 
 function App() {
   const [roundData, setRoundData] = useState(null)
+  const [roundStarted, setRoundStarted] = useState(false)
 
   const onRoundStartedHandler = (data) => {
     setRoundData(data)
@@ -15,10 +16,14 @@ function App() {
     setRoundData(newRoundData)
   }
 
+  const onSetRoundStarted = () => {
+    setRoundStarted(true);
+  }
+
   return (
     <div className={classes.app}>
       {!roundData && <RoundForm roundStart={onRoundStartedHandler}/>}
-      {roundData && <AddPlayers data={roundData} onUpdate={onUpdateRoundData} />}
+      {roundData && !roundStarted && <AddPlayers data={roundData} onUpdate={onUpdateRoundData} onStart={onSetRoundStarted}/>}
     </div>
   );
 }

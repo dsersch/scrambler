@@ -77,7 +77,7 @@ const RoundForm = (props) => {
                 <label>Team Captain</label>
                 <input type='text' value={formTeamCaptain} onChange={onTeamCaptianChangeHandler}/>
             </div>
-            <button type='submit'>Get Started</button>
+            <button type='submit'>Add Players</button>
         </form>
     )
 }
