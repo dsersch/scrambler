@@ -1,0 +1,32 @@
+.current-hole {
+    background-color: lightgreen;
+}
+
+.hole-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+
+.hole-info h1 {
+    font-weight: bold;
+    color: darkolivegreen
+}
+
+.hole-info p {
+    margin: 7px 0px;
+    font-weight: bold;
+}
+
+.blue {
+    color: blue;
+}
+
+.white {
+    color: white;
+}
+
+.red {
+    color: red;
+}

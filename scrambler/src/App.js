@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import classes from './App.module.css';
 import AddPlayers from './components/AddPlayers';
-import RoundForm from './components/RoundForm'
+import RoundForm from './components/RoundForm';
+import CurrentHole from './components/CurrentHole';
 
 
 function App() {
@@ -22,8 +23,9 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {!roundData && <RoundForm roundStart={onRoundStartedHandler}/>}
-      {roundData && !roundStarted && <AddPlayers data={roundData} onUpdate={onUpdateRoundData} onStart={onSetRoundStarted}/>}
+      <CurrentHole currentHole='5'/>
+      {/* {!roundData && <RoundForm roundStart={onRoundStartedHandler}/>}
+      {roundData && !roundStarted && <AddPlayers data={roundData} onUpdate={onUpdateRoundData} onStart={onSetRoundStarted}/>} */}
     </div>
   );
 }
