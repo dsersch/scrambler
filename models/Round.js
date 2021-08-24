@@ -11,6 +11,10 @@ const roundSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "Hole"
     }],
+    currentHole: {
+        type: String,
+        required: true,
+    }
 })
 
 const Round = mongoose.model("Round", roundSchema);

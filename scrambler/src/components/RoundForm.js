@@ -4,6 +4,7 @@ import classes from './RoundForm.module.css'
 const RoundForm = (props) => {
     const [formTeamName, setFormTeamName] = useState('')
     const [formTeamCaptain, setFormTeamCaptain] = useState('')
+    const [startingHole, setStartingHole] = useState('1')
 
     const onTeamNameChangeHandler = (event) => {
         setFormTeamName(event.target.value)
@@ -11,6 +12,10 @@ const RoundForm = (props) => {
 
     const onTeamCaptianChangeHandler = (event) => {
         setFormTeamCaptain(event.target.value)
+    }
+
+    const onStargingHoleChange = (event) => {
+        setStartingHole(event.target.value)
     }
 
     const postPlayer = async () => {
@@ -40,7 +45,8 @@ const RoundForm = (props) => {
                     method: 'POST',
                     body: JSON.stringify({
                         teamName: formTeamName,
-                        players: [player]
+                        players: [player],
+                        currentHole: startingHole,
                     }),
                     headers: {
                         'Content-type': 'application/json'
@@ -70,12 +76,16 @@ const RoundForm = (props) => {
     return (
         <form onSubmit={formSubmitHandler} className={classes.form}>
             <div>
-                <label>Team Name</label>
-                <input type='text' value={formTeamName} onChange={onTeamNameChangeHandler}/>
+                <label htmlFor='team-name'>Team Name</label>
+                <input type='text' id='team-name' value={formTeamName} onChange={onTeamNameChangeHandler}/>
             </div>
             <div>
-                <label>Team Captain</label>
-                <input type='text' value={formTeamCaptain} onChange={onTeamCaptianChangeHandler}/>
+                <label htmlFor='team-captian'>Team Captain</label>
+                <input type='text' id='team-captain' value={formTeamCaptain} onChange={onTeamCaptianChangeHandler}/>
+            </div>
+            <div>
+                <label htmlFor='starting-hole'>Starting Hole</label>
+                <input type='number' min='1' max='18' onChange={onStargingHoleChange}/>
             </div>
             <button type='submit'>Add Players</button>
         </form>
