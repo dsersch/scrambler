@@ -1,5 +1,5 @@
 .app {
-    height: 50rem;
+    height: auto;
     width: 100%;
     background: grey;
     display: flex;
