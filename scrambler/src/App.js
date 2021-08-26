@@ -6,8 +6,8 @@ import CurrentHole from './components/CurrentHole';
 
 
 function App() {
-  const [roundData, setRoundData] = useState({currentHole: '1'})
-  const [roundStarted, setRoundStarted] = useState(false)
+  const [roundData, setRoundData] = useState({currentHole: '1', players: [{playerName: 'Steve'}, {playerName: 'Chad'}, {playerName: 'Cody'}]})
+  const [roundStarted, setRoundStarted] = useState(true)
   const [holeInfo, setHoleInfo] = useState()
 
   const onRoundStartedHandler = (data) => {
@@ -22,9 +22,27 @@ function App() {
     setRoundStarted(true);
   }
 
-  const onHoleChange = () => {
+  const onNextHoleChange = () => {
     setRoundData((prevState) => {
-      return {...prevState, currentHole: '6'}
+      let nextHole
+      if (prevState.currentHole === '18') {
+        nextHole = '1'
+      } else {
+        nextHole = roundData.currentHole++
+      }
+      return {...prevState, currentHole: nextHole.toString()}
+    })
+  }
+
+  const onPrevHoleChange = () => {
+    setRoundData((prevState) => {
+      let prevHole
+      if (prevState.currentHole === '1') {
+        prevHole = '18'
+      } else {
+        prevHole = roundData.currentHole--
+      }
+      return {...prevState, currentHole: prevHole.toString()}
     })
   }
 
@@ -46,9 +64,9 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {!roundData.teamName && <RoundForm roundStart={onRoundStartedHandler}/>}
-      {roundData.teamName && !roundStarted && <AddPlayers data={roundData} onUpdate={onUpdateRoundData} onStart={onSetRoundStarted}/>}
-      {roundStarted && holeInfo && <CurrentHole hole={holeInfo} holeChange={onHoleChange} />}
+      {/* {!roundData.teamName && <RoundForm roundStart={onRoundStartedHandler}/>}
+      {roundData.teamName && !roundStarted && <AddPlayers data={roundData} onUpdate={onUpdateRoundData} onStart={onSetRoundStarted}/>} */}
+      {roundStarted && holeInfo && <CurrentHole players={roundData.players} hole={holeInfo} nextChange={onNextHoleChange} prevChange={onPrevHoleChange}/>}
     </div>
   );
 }

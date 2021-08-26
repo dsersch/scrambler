@@ -30,3 +30,41 @@
 .red {
     color: red;
 }
+
+.controls {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+}
+
+
+.controls button {
+    box-sizing: border-box;
+    border: none;
+    font-size: 1rem;
+    background-color: darkolivegreen;
+    color: white;
+    transition: all .3s;
+    padding: .5rem;
+}
+
+.controls button:hover {
+    background-color: rgb(70, 88, 37);
+}
+
+.add-shot {
+    width: 50%;
+    padding: .5rem;
+}
+
+.prev {
+    width: 25%;
+    border-radius: 10px 0px 0px 10px;
+    margin-right: 1px;
+}
+
+.next {
+    width: 25%;
+    border-radius: 0px 10px 10px 0px;
+    margin-left: 1px;
+}

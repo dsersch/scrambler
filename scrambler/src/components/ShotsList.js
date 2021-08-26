@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './ShotsList.module.css'
 
 const ShotsList = (props) => {
@@ -15,9 +15,12 @@ const ShotsList = (props) => {
         }
     }
 
+    useEffect(()=> {
+        fetchShots()
+    }, [])
+
     return (
         <div className={classes['shot-list']}>
-            <button onClick={fetchShots}>Get Shots</button>
             <ul>
                 {shotList.map((el) => {
                 return <li key={el._id}>Type: {el.shotType}</li>
