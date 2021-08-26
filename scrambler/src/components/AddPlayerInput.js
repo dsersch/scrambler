@@ -46,8 +46,6 @@ const AddPlayerInput = (props) => {
             })
             const updatedRoster = await res.json()
             props.rosterUpdate(updatedRoster.data)
-            setPlayerName('')
-
         } catch (err) {
             console.log(err)
         }
@@ -57,6 +55,9 @@ const AddPlayerInput = (props) => {
     const addPlayerHandler = (event) => {
         event.preventDefault()
         updateRoster()
+        if (props.roundInfo.players.length < 4) {
+            setPlayerName('')
+        } 
     }
 
     return (
