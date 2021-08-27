@@ -34,33 +34,21 @@ const AddShotForm = (props) => {
             })
             const addedShot = await res.json()
             console.log(addedShot)
-            return addedShot.data._id
+            return addedShot.data
 
         } catch (err) {
             console.log(err)
         }
-
-        // try {
-        //     const shotId = await addShot();
-
-        //     const res = await fetch(`/holes/${props.holeId}`, {
-        //         method: 'PATCH',
-        //         body: json.stringify({
-        //             shots: 
-        //         })
-        //     })
-        // } catch (err) {
-        //     console.log(err)
-        // }
     }
 
-    const onAddShot = (event) => {
+    const onAddShot = async (event) => {
         event.preventDefault()
-        props.onAddShot(addShot())
+        const shotInfo = await addShot()
+        props.onAddShot(shotInfo)
     }
 
     return (
-        <form onSubmit={onAddShot}>
+        <div>
             <select onChange={onShotTypeChange}>
                 <option value="Tee Shot">Tee Shot</option>
                 <option value="Approach">Approach</option>
@@ -94,8 +82,9 @@ const AddShotForm = (props) => {
                     return <option key={el._id} value={el._id}>{el.playerName}</option>
                 })}
             </select>
-            <button>Add Shot</button>
-        </form>
+            <button onClick={onAddShot}>Add Shot</button>
+            <button onClick={props.onFinish}>Finish Hole</button>
+        </div>
     )
 }
 

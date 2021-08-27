@@ -5,6 +5,7 @@ import AddShotForm from './AddShotForm'
 
 const CurrentHole = (props) => {
     const [holeId, setHoleId] = useState(null)
+    const [shots, setShots] = useState([])
 
     const createHole = async () => {
         try {
@@ -29,7 +30,33 @@ const CurrentHole = (props) => {
     }
 
     const addShotHandler = (shot) => {
-        console.log('clicked...')
+        setShots((prevState) => {
+            return [...prevState, shot]
+        })
+    }
+
+    const onFinishHandler = async () => {
+        const shotIds = shots.map((el) => {
+            return el._id
+        })
+        try {
+            const res = await fetch(`/holes/${holeId}`, {
+                method: 'PATCH', 
+                body: JSON.stringify({
+                    shots: shotIds
+                }),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+
+            console.log(res.status)
+            console.log(res.data)
+        } catch (err) {
+            console.log(err)
+        }
+        setShots([])
+        props.nextChange()
     }
     
     return (
@@ -49,8 +76,8 @@ const CurrentHole = (props) => {
                 <button className={classes['start-hole']} onClick={createHole}>Start Hole</button> 
                 <button className={classes.next} onClick={props.nextChange}>Next</button>
             </div>
-            {holeId && <ShotsList holeId={holeId} />}
-            {holeId && <AddShotForm roundData={props.roundData} holeId={holeId} onAddShot={addShotHandler} />}
+            {holeId && shots.length > 0 && <ShotsList holeId={holeId} shots={shots}/>}
+            {holeId && <AddShotForm roundData={props.roundData} holeId={holeId} onAddShot={addShotHandler} onFinish={onFinishHandler}/>}
         </div>
     )
 }
