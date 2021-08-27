@@ -1,23 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './AddShotForm.module.css'
 
 const AddShotForm = (props) => {
+    const [shotTypeValue, setShotTypeValue] = useState(null)
+    const [clubValue, setClubValue] = useState(null)
+    const [playerValue, setPlayerValue] = useState(null)
+
+    const onShotTypeChange = (event) => {
+        setShotTypeValue(event.target.value)
+    }
+
+    const onClubChange = (event) => {
+        setClubValue(event.target.value)
+    }
+
+    const onPlayerChange = (event) => {
+        setPlayerValue(event.target.value)
+    }
+
+    const addShot = async (req, res) => {
+        try {
+            const res = await fetch('/shots', {
+                method: 'POST',
+                body: JSON.stringify({
+                    shotType: shotTypeValue,
+                    club: clubValue,
+                    player: playerValue,
+                    hole: props.holeId
+                }),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+            const addedShot = await res.json()
+            console.log(addedShot)
+            return addedShot.data._id
+
+        } catch (err) {
+            console.log(err)
+        }
+
+        // try {
+        //     const shotId = await addShot();
+
+        //     const res = await fetch(`/holes/${props.holeId}`, {
+        //         method: 'PATCH',
+        //         body: json.stringify({
+        //             shots: 
+        //         })
+        //     })
+        // } catch (err) {
+        //     console.log(err)
+        // }
+    }
 
     const onAddShot = (event) => {
         event.preventDefault()
-        console.log('shot add clicked...')
+        props.onAddShot(addShot())
     }
 
     return (
         <form onSubmit={onAddShot}>
-            <select>
+            <select onChange={onShotTypeChange}>
                 <option value="Tee Shot">Tee Shot</option>
                 <option value="Approach">Approach</option>
                 <option value="Chip">Chip</option>
                 <option value="Putt">Putt</option>
                 <option value="Recovery">Recovery</option>
             </select>
-            <select>
+            <select onChange={onClubChange}>
                 <option value="Driver">Driver</option>
                 <option value="3 Wood">3 Wood</option>
                 <option value="5 Wood">5 Wood</option>
@@ -38,9 +89,9 @@ const AddShotForm = (props) => {
                 <option value="60° Wedge">60° Wedge</option>
                 <option value="Putter">Putter</option>
             </select>
-            <select>
-                {props.players.map((el) => {
-                    return <option value={el.playerName}>{el.playerName}</option>
+            <select onChange={onPlayerChange}>
+                {props.roundData.players.map((el) => {
+                    return <option key={el._id} value={el._id}>{el.playerName}</option>
                 })}
             </select>
             <button>Add Shot</button>

@@ -1,6 +1,22 @@
 const Hole = require('../models/Hole');
 const mongoose = require('mongoose');
 
+exports.getAllHoles = async (req, res) => {
+    try {
+        const allHoles = await Hole.find();
+
+        res.status(200).json({
+            status: 'success',
+            data: allHoles,
+        })
+    } catch (err) {
+        res.status(404).json({
+            status: 'failed',
+            message: err,
+        })
+    }
+}
+
 exports.addHole = async (req, res) => {
     try {
         const newHole = await Hole.create(req.body);

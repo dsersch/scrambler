@@ -6,26 +6,29 @@ const ShotsList = (props) => {
 
     const fetchShots = async() => {
         try {
-            const res = await fetch('/shots')
+            const res = await fetch(`/shots/hole/${props.holeId}`)
             const data = await res.json()
+            console.log(data.data)
             
-            setShotList(data.data.allShots)
+            
         } catch (err) {
             console.log(err)
         }
     }
 
-    useEffect(()=> {
-        fetchShots()
-    }, [])
+    // useEffect(()=> {
+    //     fetchShots()
+    // }, [fetchShots])
+
 
     return (
         <div className={classes['shot-list']}>
             <ul>
                 {shotList.map((el) => {
-                return <li key={el._id}>Type: {el.shotType}</li>
-                })}
+                    return <li key={el._id}>Type: {el.shotType}</li>
+                 })}
             </ul>
+            <button onClick={fetchShots}>fetch shots</button>
         </div>
     )
 }

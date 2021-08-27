@@ -49,6 +49,22 @@ exports.getShot = async (req, res) => {
     }
 }
 
+exports.getShotsByHoleId = async (req, res) => {
+    try {
+        const foundShots = await Shot.find({hole: req.params.id})
+
+        res.status(200).json({
+            status: 'success',
+            data: foundShots,
+        })
+    } catch (err) {
+        res.status(404).json({
+            status: 'failed',
+            message: err,
+        })
+    }
+}
+
 exports.updateShot = async (req, res) => {
     try {
         const updatedShot = await Shot.findByIdAndUpdate(req.params.id, req.body, {

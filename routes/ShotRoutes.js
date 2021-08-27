@@ -14,4 +14,8 @@ router
     .patch(shotController.updateShot)
     .delete(shotController.deleteShot)
 
+router
+    .route('/hole/:id')
+    .get(shotController.getShotsByHoleId)
+
 module.exports = router;

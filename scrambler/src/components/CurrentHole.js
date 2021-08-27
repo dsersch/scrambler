@@ -1,15 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classes from './CurrentHole.module.css';
 import ShotsList from './ShotsList'
 import AddShotForm from './AddShotForm'
 
 const CurrentHole = (props) => {
     const [holeId, setHoleId] = useState(null)
-    const [showForm, setShowForm] = useState(false)
 
-    // const createHole = async (req, res) => {
+    const createHole = async () => {
+        try {
+            const res = await fetch('/holes', {
+                method: 'POST',
+                body: JSON.stringify({
+                    round: props.roundData._id,
+                    par: props.hole.par,
+                    shots: [],
+                    targetHit: false
+                }),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+            const createdHole = await res.json()
+            setHoleId(createdHole.data._id)
 
-    // }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const addShotHandler = (shot) => {
+        console.log('clicked...')
+    }
     
     return (
         <div className={classes['current-hole']}>
@@ -25,11 +46,11 @@ const CurrentHole = (props) => {
             </div>
             <div className={classes.controls}>
                 <button className={classes.prev} onClick={props.prevChange}>Prev</button>
-                <button className={classes['add-shot']}>Add Shot</button> 
+                <button className={classes['start-hole']} onClick={createHole}>Start Hole</button> 
                 <button className={classes.next} onClick={props.nextChange}>Next</button>
             </div>
-            {holeId && <ShotsList holeId={holeId}/>}
-            {showForm && <AddShotForm players={props.players} holeId={holeId}/>}
+            {holeId && <ShotsList holeId={holeId} />}
+            {holeId && <AddShotForm roundData={props.roundData} holeId={holeId} onAddShot={addShotHandler} />}
         </div>
     )
 }

@@ -6,6 +6,10 @@ const holeSchema = new mongoose.Schema({
         ref: 'Round',
         required: true,
     },
+    par: {
+        type: Number,
+        required: true,
+    },
     shots: [{
         type: mongoose.Schema.ObjectId,
         ref: 'Shot',
