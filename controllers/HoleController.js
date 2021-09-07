@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 exports.getAllHoles = async (req, res) => {
     try {
-        const allHoles = await Hole.find();
+        const allHoles = await Hole.find().populate('shots');
 
         res.status(200).json({
             status: 'success',
