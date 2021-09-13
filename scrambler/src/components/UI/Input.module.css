@@ -1,0 +1,19 @@
+.form-element label {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.form-element input {
+    width: 100%;
+    padding: .5rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    transition: all .2s;
+}
+
+.form-element input:focus {
+    outline-color: lightgreen;
+}

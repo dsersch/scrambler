@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import classes from './RoundForm.module.css'
+import Card from './UI/Card'
+import Input from './UI/Input';
 
 const RoundForm = (props) => {
     const [formTeamName, setFormTeamName] = useState('')
@@ -74,21 +76,14 @@ const RoundForm = (props) => {
     }
 
     return (
-        <form onSubmit={formSubmitHandler} className={classes.form}>
-            <div>
-                <label htmlFor='team-name'>Team Name</label>
-                <input type='text' id='team-name' value={formTeamName} onChange={onTeamNameChangeHandler}/>
-            </div>
-            <div>
-                <label htmlFor='team-captian'>Team Captain</label>
-                <input type='text' id='team-captain' value={formTeamCaptain} onChange={onTeamCaptianChangeHandler}/>
-            </div>
-            <div>
-                <label htmlFor='starting-hole'>Starting Hole</label>
-                <input type='number' min='1' max='18' onChange={onStargingHoleChange}/>
-            </div>
-            <button type='submit'>Add Players</button>
-        </form>
+        <Card>
+            <form onSubmit={formSubmitHandler} className={classes.form}>
+                <Input settings={{type: 'text', id: 'team-name', value: formTeamName, onChange: onTeamNameChangeHandler}} label='Team Name' />
+                <Input settings={{type: 'text', id: 'team-captain', value: formTeamCaptain, onChange: onTeamCaptianChangeHandler}} label='Team Captain' />
+                <Input settings={{type: 'number', id: 'starting-hole', min: '1', max: '18', onChange: onStargingHoleChange}} label='Starting Hole' />
+                <button type='submit'>Add Players</button>
+            </form>
+        </Card>
     )
 }
 
