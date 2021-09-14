@@ -1,6 +1,7 @@
 import React from 'react';
 import AddPlayerInput from './AddPlayerInput';
 import classes from './AddPlayers.module.css';
+import Card from './UI/Card'
 
 const AddPlayers = (props) => {
     const players = props.data.players
@@ -10,7 +11,7 @@ const AddPlayers = (props) => {
     }
 
     return (
-        <div className={classes['player-list']}>
+        <Card className={classes['player-list']}>
             <ul>
                 {players.map((el) => {
                     return <li key={el._id}>{el.playerName}</li>
@@ -18,7 +19,7 @@ const AddPlayers = (props) => {
             </ul>
             {players.length < 4 && <AddPlayerInput roundInfo={props.data} rosterUpdate={onUpdate}/>}
             <button onClick={props.onStart}>Start round</button> 
-        </div>
+        </Card>
     )
 }
 
