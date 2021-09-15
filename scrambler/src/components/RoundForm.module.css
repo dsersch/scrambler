@@ -1,10 +1,8 @@
 .form {
-    background-color: rgb(98, 163, 98);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 5rem;
     font-size: 1.5rem;
     color: white;
 }
@@ -23,10 +21,11 @@
     margin-bottom: 2rem;
     box-sizing: border-box;
     transition: all .2s;
+    box-shadow: 2px 2px 5px #5b8e7d;
 }
 
 .form input:focus {
-    outline-color: lightgreen;
+    outline-color: #f4e285;
 }
 
 .form button {
@@ -34,12 +33,18 @@
     width: 50%;
     padding: 1rem;
     font-size: 1rem;
-    background-color: darkolivegreen;
+    background-color: #5b8e7d;
     color: white;
     border-radius: 10px;
     transition: all .3s;
 }
 
 .form button:hover {
-    background-color: rgb(70, 88, 37);
+    background-color: #3c5e52;
 }
+
+/* main green: 8cb369,
+yellow: f4e285,
+orange: f4a259,
+dark green: 5b8e7d,
+red/invalid: bc4b51 */
