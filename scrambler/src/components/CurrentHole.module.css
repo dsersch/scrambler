@@ -1,13 +1,33 @@
-.current-hole {
-    background-color: lightgreen;
-}
-
 .hole-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem;
 }
+
+.hole-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.stats h2 {
+    margin: .5em 0;
+}
+
+.distances {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 
 .hole-info h1 {
     font-weight: bold;
@@ -20,15 +40,31 @@
 }
 
 .blue {
-    color: blue;
+    color: #12539e;
 }
 
 .white {
-    color: white;
+    color: #f2fbe0;
 }
 
 .red {
-    color: red;
+    color: #a80505;
+}
+
+.container {
+    background-color: #214e34;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+    margin-bottom: 1em;
+    border-radius: 15px;
+    color: #f2fbe0;
+}
+
+.hole-info img {
+    max-width: 200px;
 }
 
 .controls {

@@ -2,7 +2,7 @@
     height: 5em;
     background-color: #214e34;
     color: #f2fbe0;
-    position: absolute;
+    position: fixed;
     top: 0;
     display: flex;
     align-items: center;

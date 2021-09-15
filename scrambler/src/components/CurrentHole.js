@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classes from './CurrentHole.module.css';
+import Card from './UI/Card'
 import ShotsList from './ShotsList'
 import AddShotForm from './AddShotForm'
 
@@ -60,15 +61,22 @@ const CurrentHole = (props) => {
     }
     
     return (
-        <div className={classes['current-hole']}>
+        <Card>
             <div className={classes['hole-info']}>
-                <h1>Hole #{props.hole.holeNumber}</h1>
-                <h2>Par: {props.hole.par}</h2>
-                <h2>Handicap: {props.hole.handicap}</h2>
-                <h3>distances</h3>
-                <p className={classes.blue}>Blue: {props.hole.blueTee}y</p>
-                <p className={classes.white}>White: {props.hole.whiteTee}y</p>
-                <p className={classes.red}>Red: {props.hole.redTee}y</p>
+                <div className={classes.container}>
+                    <h1>Hole #{props.hole.holeNumber}</h1>
+                    <div className={classes.stats}>
+                        <div className={classes['hole-stats']}>
+                            <h2>Par: {props.hole.par}</h2>
+                            <h2>HC: {props.hole.handicap}</h2>
+                        </div>
+                        <div className={classes.distances}>
+                            <p className={classes.blue}>Blue: {props.hole.blueTee}y</p>
+                            <p className={classes.white}>White: {props.hole.whiteTee}y</p>
+                            <p className={classes.red}>Red: {props.hole.redTee}y</p>
+                        </div>
+                    </div>
+                </div>
                 <img src={`http://localhost:3001/images/hole${props.hole.holeNumber}.png`} alt='hole 1 overview'/>    
             </div>
             <div className={classes.controls}>
@@ -78,7 +86,7 @@ const CurrentHole = (props) => {
             </div>
             {holeId && shots.length > 0 && <ShotsList holeId={holeId} shots={shots}/>}
             {holeId && <AddShotForm roundData={props.roundData} holeId={holeId} onAddShot={addShotHandler} onFinish={onFinishHandler}/>}
-        </div>
+        </Card>
     )
 }
 
