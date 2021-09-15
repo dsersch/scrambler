@@ -1,0 +1,8 @@
+colors: 
+
+grey/dark text: #605b56
+dark green: #214e34
+olive: #acc18a
+light green: dafeb7
+off white: #f2fbe0
+yellow focus: #ffad05

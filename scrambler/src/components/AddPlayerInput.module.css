@@ -14,6 +14,7 @@
 .form label {
     display: block;
     margin-bottom: 1rem;
+    color: #f2fbe0;
 }
 
 .form input {
@@ -25,23 +26,10 @@
     margin-bottom: 2rem;
     box-sizing: border-box;
     transition: all .2s;
+    background-color: #f2fbe0;
+    color: #605b56;
 }
 
 .form input:focus {
-    outline-color: lightgreen;
-}
-
-.form button {
-    border: none;
-    width: 50%;
-    padding: 1rem;
-    font-size: 1rem;
-    background-color: darkolivegreen;
-    color: white;
-    border-radius: 10px;
-    transition: all .3s;
-}
-
-.form button:hover {
-    background-color: rgb(70, 88, 37);
+    outline-color: #ffad05;
 }

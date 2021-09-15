@@ -3,6 +3,7 @@ import classes from './App.module.css';
 import AddPlayers from './components/AddPlayers';
 import RoundForm from './components/RoundForm';
 import CurrentHole from './components/CurrentHole';
+import Nav from './components/Layout/Nav'
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
 
   return (
     <div className={classes.app}>
+      <Nav />
       {!roundData.teamName && <RoundForm roundStart={onRoundStartedHandler}/>}
       {roundData.teamName && !roundStarted && <AddPlayers data={roundData} onUpdate={onUpdateRoundData} onStart={onSetRoundStarted}/>}
       {roundStarted && holeInfo && <CurrentHole roundData={roundData} hole={holeInfo} nextChange={onNextHoleChange} prevChange={onPrevHoleChange}/>}
